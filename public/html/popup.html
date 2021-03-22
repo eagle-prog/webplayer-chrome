@@ -7,21 +7,42 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="../vendors/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="../vendors/bootstrap/bootstrap-extend.min.css">
-    <link rel="stylesheet" href="../vendors/ladda/ladda-themeless.min.css">
     <link rel="stylesheet" href="../fonts/font-awesome/font-awesome.min.css">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <div class="container text-center">
+    <div class="wp-container">
+        <div class="wp-d-flex m-t-20">
+            <div>
+                <input type="checkbox" class="chk-prevent-auto-play">
+            </div>
+            <div class="wp-label m-l-10">
+                Prevent video auto-play
+            </div>
+        </div>
+        <div class="wp-d-flex m-t-20">
+            <div>
+                <input type="checkbox" class="chk-show-ratings">
+            </div>
+            <div class="wp-label m-l-10">
+                Show IMDB, Rotten Tomatoes, Metacritic
+            </div>
+        </div>
+        <div class="wp-d-flex m-t-20">
+            <div>
+                <input type="checkbox" class="chk-show-trailers">
+            </div>
+            <div class="wp-label m-l-10">
+                Show trailers
+            </div>
+        </div>
     </div>
     <!-- Scripts -->
     <script src="../vendors/jquery/jquery.min.js"></script>
     <script src="../vendors/bootstrap/bootstrap.min.js"></script>
-    <script src="../vendors/ladda/spin.min.js"></script>
-    <script src="../vendors/ladda/ladda.min.js"></script>
     <script src="../js/config.js"></script>
-    <script src="../js/api.js"></script>
     <script src="../js/global.js"></script>
     <script src="../js/utils.js"></script>
+    <script src="../js/popup.js"></script>
 </body>
 </html>

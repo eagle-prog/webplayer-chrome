@@ -4,7 +4,7 @@ init();
  * Initialization
  */
 async function init() {
-    setPopup('html/options.html');
+    setPopup('html/popup.html');
 
     chrome.tabs.query({url: 'https://www.netflix.com/*'}, (tabs) => {
         for (const tab of tabs) {

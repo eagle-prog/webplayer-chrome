@@ -26,3 +26,27 @@ function loadJS(url) {
         }, 100);
     });
 }
+
+/**
+ * Check if `prevent video auto play` is enabled
+ */
+async function isPreventAutoPlay() {
+    const data = await getValueFromStorage('wp_prevent_auto_play');
+    return data;
+}
+
+/**
+ * Check if `show ratings` is enabled
+ */
+async function isShowRatings() {
+    const data = await getValueFromStorage('wp_show_ratings');
+    return data;
+}
+
+/**
+ * Check if `show trailers` is enabled
+ */
+async function isShowTrailers() {
+    const data = await getValueFromStorage('wp_show_trailers');
+    return data;
+}
