@@ -1,0 +1,16 @@
+{
+  "name": "WebPlayer",
+  "version": "1.0.0",
+  "description": "Give you extra controls for video play on Netflix.",
+  "scripts": {
+    "pack": "rm *.zip; cd public; zip -r ../netflix.zip *"
+  },
+  "author": "Eagle19243",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eagle19243/netflix.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Eagle19243/netflix/issues"
+  }
+}
