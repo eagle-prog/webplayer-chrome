@@ -43,14 +43,13 @@ window.onload = async function() {
 }
 
 function init() {
-    const wpInterval = setInterval(async () => {
+    setInterval(async () => {
         if ($('.nf-player-container')[0] && 
             !$('.motion-background-component')[0] && 
             !$('.wp-wrapper')[0]) 
         {
             await initUI();
             initEvents();
-            clearInterval(wpInterval);
         }
     }, 1000);
 }
