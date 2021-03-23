@@ -16,10 +16,13 @@ body {
 .wp-container {
     width: 400px !important;
     height: auto !important;
-    padding: 15px !important;
+    padding: 20px !important;
 }
 .wp-d-flex {
     display: flex;
+}
+.w-300 {
+    width: 300px;
 }
 .m-l-20 {
     margin-left: 20px !important;

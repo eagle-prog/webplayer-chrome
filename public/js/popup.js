@@ -10,10 +10,20 @@ async function initUI() {
     const isPreventAutoPlayEnabled = await isPreventAutoPlay();
     const isShowRatingsEnabled     = await isShowRatings();
     const isShowTrailersEnabled    = await isShowTrailers();
-    console.log(isPreventAutoPlayEnabled, isShowRatingsEnabled, isShowTrailersEnabled);
+
     $('.chk-prevent-auto-play').attr('checked', isPreventAutoPlayEnabled);
     $('.chk-show-ratings').attr('checked', isShowRatingsEnabled);
     $('.chk-show-trailers').attr('checked', isShowTrailersEnabled);
+
+    new Switchery(document.querySelector('.chk-prevent-auto-play'), {
+        size: 'small'
+    });
+    new Switchery(document.querySelector('.chk-show-ratings'), {
+        size: 'small'
+    });
+    new Switchery(document.querySelector('.chk-show-trailers'), {
+        size: 'small'
+    });
 }
 
 /**
