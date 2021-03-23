@@ -1,14 +1,79 @@
 <div class="wp-controls">
-    <button type="button" class="wp-button wp-bsc">
-        <span class="material-icons">settings_brightness</span>
-    </button>
-    <button type="button" class="wp-button wp-ps">
-        <span class="material-icons">settings_brightness</span>
-    </button>
-    <button type="button" class="wp-button wp-cvp">
-        <span class="material-icons">settings_brightness</span>
-    </button>
-    <button type="button" class="wp-button wp-rsfz">
-        <span class="material-icons">settings_brightness</span>
-    </button>
+    <div>
+        <button type="button" class="wp-button p-10 wp-btn-bsc" data-target="wp-controls-bsc">
+            <span class="material-icons">settings_brightness</span>
+        </button>
+        <button type="button" class="wp-button p-10 wp-btn-ps" data-target="wp-controls-ps">
+            <span class="material-icons">speed</span>
+        </button>
+        <button type="button" class="wp-button p-10 wp-btn-cvp" data-target="wp-controls-cvp">
+            <span class="material-icons">featured_video</span>
+        </button>
+        <button type="button" class="wp-button p-10 wp-btn-rsfz" data-target="wp-controls-rsfz">
+            <span class="material-icons">video_settings</span>
+        </button>
+    </div>
+    <div class="wp-controls-detail" id="wp-controls-bsc">
+        <div>
+            <label for="wp-control-brightness" class="wp-label">Brightness</label>
+            <input type="range" min="1" max="100" value="50" class="slider" id="wp-control-brightness">
+        </div>
+        <div>
+            <label for="wp-control-saturation" class="wp-label">Saturation</label>
+            <input type="range" min="1" max="100" value="50" class="slider" id="wp-control-saturation">
+        </div>
+        <div>
+            <label for="wp-control-constrast" class="wp-label">Constrast</label>
+            <input type="range" min="1" max="100" value="50" class="slider" id="wp-control-constrast">
+        </div>
+    </div>
+    <div class="wp-controls-detail" id="wp-controls-ps">
+        <div>
+            <input type="number" value=1 id="wp-control-speed-rate">
+            <input type="range" min="1" max="100" value="50" class="slider" id="wp-control-speed-slider">
+        </div>
+    </div>
+    <div class="wp-controls-detail wp-d-flex" id="wp-controls-cvp">
+        <div>
+            <div>
+                <label for="wp-control-cvp-x" class="wp-label">X:</label>
+                <input type="number" value=0 step=5 id="wp-control-cvp-x">
+            </div>
+            <div>
+                <label for="wp-control-cvp-y" class="wp-label">Y:</label>
+                <input type="number" value=0 step=5 id="wp-control-cvp-y">
+            </div>
+        </div>
+        <div>
+            <button type="button" class="wp-button">
+                <span class="material-icons">north</span>
+            </button>
+            <button type="button" class="wp-button">
+                <span class="material-icons">south</span>
+            </button>
+            <button type="button" class="wp-button">
+                <span class="material-icons">east</span>
+            </button>
+            <button type="button" class="wp-button">
+                <span class="material-icons">west</span>
+            </button>
+        </div>
+    </div>
+    <div class="wp-controls-detail" id="wp-controls-rsfz">
+        <button type="button" class="wp-button">
+            <span class="material-icons">rotate_right</span>
+        </button>
+        <button type="button" class="wp-button">
+            <span class="material-icons">cached</span>
+        </button>
+        <button type="button" class="wp-button">
+            <span class="material-icons">flip</span>
+        </button>
+        <button type="button" class="wp-button">
+            <span class="material-icons">zoom_in</span>
+        </button>
+        <button type="button" class="wp-button">
+            <span class="material-icons">zoom_out</span>
+        </button>
+    </div>
 </div>

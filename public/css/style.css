@@ -1,3 +1,14 @@
+.wp-wrapper {
+    direction: ltr;
+    position: absolute;
+    top: 200px;
+    right: 0;
+    left: 0;
+    margin: auto;
+    z-index: 10;
+    width: auto;
+    text-align: center;
+}
 .wp-button {
     background: transparent;
     border: 0px;
@@ -34,4 +45,7 @@
 }
 .m-b-10 {
     margin-bottom: 10px !important;
+}
+.p-10 {
+    padding: 10px;
 }
