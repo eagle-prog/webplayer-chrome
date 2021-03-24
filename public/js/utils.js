@@ -66,11 +66,20 @@ function changeBSC(data) {
 
     for (const video of videos) {
         video.style.setProperty('filter', str, 'important');
-        console.log(video.style.getPropertyValue('filter'));
     }
 
     style.appendChild(document.createTextNode(css));
     document.head.appendChild(style);
-    
-    
+}
+
+/**
+ * Change playback speed rate of all videos in a page
+ * @param {number} speed 
+ */
+function changePS(speed=1) {
+    const videos = document.querySelectorAll('video');
+
+    for (const video of videos) {
+        video.playbackRate = speed;
+    }
 }

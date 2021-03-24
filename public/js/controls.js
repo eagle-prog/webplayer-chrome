@@ -10,6 +10,8 @@ const Controls = {
         $('.wp-btn-shortcut').click(this.onClickBtnShortcut);
         $('.wp-btn-reset-bsc').click(this.onClickResetBSC);
         $('#wp-controls-bsc .slider').change(this.onChangeBSC);
+        $('#wp-control-speed-rate').change(this.onChangeSpeedInput);
+        $('#wp-control-speed-slider').change(this.onChangeSpeedSlider);
     },
     /**
      * Event when click reset button in brightness, saturation, contrast
@@ -34,6 +36,28 @@ const Controls = {
         const contrast   = $('#wp-control-contrast').val();
 
         changeBSC({ brightness, saturation, contrast });
+    },
+    /**
+     * Event when playback speed input changed
+     */
+    onChangeSpeedInput: function(e) {
+        let speed = $(this).val();
+
+        if (speed > 20) {
+            speed = 20;
+            $(this).val(20);
+        }
+
+        $('#wp-control-speed-slider').val(speed);
+        changePS(speed);
+    },
+    /**
+     * Event when playback speed slider changed
+     */
+    onChangeSpeedSlider: function() {
+        const speed = $(this).val();
+        $('#wp-control-speed-rate').val(speed);
+        changePS(speed);
     },
     /**
      * Event when click shortcut icon
