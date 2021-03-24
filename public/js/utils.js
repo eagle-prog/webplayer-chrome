@@ -79,7 +79,9 @@ function changeBSC(data) {
 function changePS(speed=1) {
     const videos = document.querySelectorAll('video');
 
-    for (const video of videos) {
-        video.playbackRate = speed;
-    }
+    try {
+        for (const video of videos) {
+            video.playbackRate = speed;
+        }
+    } catch (err) {}
 }
