@@ -13,7 +13,7 @@ async function initUI() {
     document.head.appendChild(style);
     playerContainer.append(container);
 
-    await loadHTML('.wp-wrapper', 'html/controls.html');
+    await Controls.init();
 }
 
 function initEvents() {

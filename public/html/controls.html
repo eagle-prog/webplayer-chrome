@@ -1,19 +1,19 @@
 <div class="wp-controls">
-    <div>
-        <button type="button" class="wp-button p-10 wp-btn-bsc" data-target="wp-controls-bsc">
+    <div class="wp-d-flex">
+        <button type="button" class="wp-button p-10 wp-btn-shortcut" data-target="wp-controls-bsc">
             <span class="material-icons">settings_brightness</span>
         </button>
-        <button type="button" class="wp-button p-10 wp-btn-ps" data-target="wp-controls-ps">
+        <button type="button" class="wp-button p-10 wp-btn-shortcut" data-target="wp-controls-ps">
             <span class="material-icons">speed</span>
         </button>
-        <button type="button" class="wp-button p-10 wp-btn-cvp" data-target="wp-controls-cvp">
+        <button type="button" class="wp-button p-10 wp-btn-shortcut" data-target="wp-controls-cvp">
             <span class="material-icons">featured_video</span>
         </button>
-        <button type="button" class="wp-button p-10 wp-btn-rsfz" data-target="wp-controls-rsfz">
+        <button type="button" class="wp-button p-10 wp-btn-shortcut" data-target="wp-controls-rsfz">
             <span class="material-icons">video_settings</span>
         </button>
     </div>
-    <div class="wp-controls-detail" id="wp-controls-bsc">
+    <div class="wp-controls-detail wp-d-none" id="wp-controls-bsc">
         <div>
             <label for="wp-control-brightness" class="wp-label w-100 m-r-10">Brightness</label>
             <input type="range" min="1" max="100" value="50" class="slider" id="wp-control-brightness">
@@ -27,13 +27,13 @@
             <input type="range" min="1" max="100" value="50" class="slider" id="wp-control-constrast">
         </div>
     </div>
-    <div class="wp-controls-detail" id="wp-controls-ps">
+    <div class="wp-controls-detail wp-d-none" id="wp-controls-ps">
         <div>
             <input type="number" value=1 id="wp-control-speed-rate">
             <input type="range" min="1" max="100" value="50" class="slider" id="wp-control-speed-slider">
         </div>
     </div>
-    <div class="wp-controls-detail wp-d-flex" id="wp-controls-cvp">
+    <div class="wp-controls-detail wp-d-none wp-d-flex" id="wp-controls-cvp">
         <div>
             <div>
                 <label for="wp-control-cvp-x" class="wp-label">X:</label>
@@ -59,7 +59,7 @@
             </button>
         </div>
     </div>
-    <div class="wp-controls-detail" id="wp-controls-rsfz">
+    <div class="wp-controls-detail wp-d-none" id="wp-controls-rsfz">
         <button type="button" class="wp-button">
             <span class="material-icons">rotate_right</span>
         </button>
