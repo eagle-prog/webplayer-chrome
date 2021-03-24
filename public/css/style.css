@@ -9,6 +9,22 @@
     width: auto;
     text-align: center;
 }
+.wp-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.wp-controls-detail {
+    background: rgb(255 255 255 / 10%);
+    border-radius: 8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 350px;
+}
+.wp-label {
+    display: block;
+    font-size: 14px;
+}
 .wp-button {
     background: transparent;
     border: 0px;
@@ -16,11 +32,26 @@
 .wp-button .material-icons {
     font-size: 40px;
 }
+#wp-controls-bsc > div {
+    display: flex;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+/* Utilities */
 .wp-d-flex {
     display: flex;
 }
 .w-300 {
     width: 300px;
+}
+.w-200 {
+    width: 200px;
+}
+.w-100 {
+    width: 100px;
 }
 .m-l-20 {
     margin-left: 20px !important;
