@@ -8,6 +8,32 @@ const Controls = {
     },
     initEvents: function() {
         $('.wp-btn-shortcut').click(this.onClickBtnShortcut);
+        $('.wp-btn-reset-bsc').click(this.onClickResetBSC);
+        $('#wp-controls-bsc .slider').change(this.onChangeBSC);
+    },
+    /**
+     * Event when click reset button in brightness, saturation, contrast
+     */
+    onClickResetBSC: function() {
+        changeBSC({
+            brightness : 100,
+            saturation : 100,
+            contrast  : 100,
+        });
+
+        $('#wp-control-brightness').val(100);
+        $('#wp-control-saturation').val(100);
+        $('#wp-control-contrast').val(100);
+    },
+    /**
+     * Event when change brightness, saturation, contrast
+     */
+    onChangeBSC: function() {
+        const brightness = $('#wp-control-brightness').val();
+        const saturation = $('#wp-control-saturation').val();
+        const contrast   = $('#wp-control-contrast').val();
+
+        changeBSC({ brightness, saturation, contrast });
     },
     /**
      * Event when click shortcut icon
@@ -15,7 +41,7 @@ const Controls = {
     onClickBtnShortcut: function() {
         const target   = $(`#${$(this).data('target')}`);
         const isHidden = target.hasClass('wp-d-none');
-        console.log(target, isHidden);
+
         $('.wp-controls-detail').addClass('wp-d-none');
         $('.wp-btn-shortcut').css('margin-top', '0px');
 

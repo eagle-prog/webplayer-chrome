@@ -40,6 +40,14 @@
 #wp-controls-cvp .wp-button .material-icons {
     font-size: 24px;
 }
+.wp-btn-reset-bsc {
+    background: rgb(255 255 255 / 10%);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 5px;
+}
 
 /* Utilities */
 .wp-d-flex {

@@ -50,3 +50,27 @@ async function isShowTrailers() {
     const data = await getValueFromStorage('wp_show_trailers');
     return data;
 }
+
+/**
+ * Change brightness, saturation, contrast of all videos in a page
+ * @param {object} data 
+ */
+function changeBSC(data) {
+    const str    = `brightness(${data.brightness}%) ` + 
+                   `contrast(${data.contrast}%) ` + 
+                   `saturate(${data.saturation}%) ` + 
+                   `hue-rotate(0deg) sepia(0) grayscale(0)`;
+    const css    = `video{filter : ${str} !important}`;
+    const videos = document.querySelectorAll('video');
+    const style  = document.createElement('style');
+
+    for (const video of videos) {
+        video.style.setProperty('filter', str, 'important');
+        console.log(video.style.getPropertyValue('filter'));
+    }
+
+    style.appendChild(document.createTextNode(css));
+    document.head.appendChild(style);
+    
+    
+}
