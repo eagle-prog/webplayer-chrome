@@ -14,66 +14,75 @@
         </button>
     </div>
     <div class="wp-controls-detail wp-d-none" id="wp-controls-bsc">
-        <div>
+        <div class="wp-d-flex wp-justify-center m-t-10">
             <label for="wp-control-brightness" class="wp-label w-100 m-r-10">Brightness</label>
             <input type="range" min="1" max="100" value="50" class="slider" id="wp-control-brightness">
         </div>
-        <div>
+        <div class="wp-d-flex wp-justify-center m-t-10">
             <label for="wp-control-saturation" class="wp-label w-100 m-r-10">Saturation</label>
             <input type="range" min="1" max="100" value="50" class="slider" id="wp-control-saturation">
         </div>
-        <div>
+        <div class="wp-d-flex wp-justify-center m-t-10">
             <label for="wp-control-constrast" class="wp-label w-100 m-r-10">Constrast</label>
             <input type="range" min="1" max="100" value="50" class="slider" id="wp-control-constrast">
         </div>
     </div>
     <div class="wp-controls-detail wp-d-none" id="wp-controls-ps">
-        <div>
-            <input type="number" value=1 id="wp-control-speed-rate">
+        <div class="wp-d-flex wp-justify-center m-t-10">
+            <label for="wp-control-speed-rate" class="wp-label m-r-10">Rate:</label>
+            <input type="number" value=1 class="m-r-10" id="wp-control-speed-rate">
             <input type="range" min="1" max="100" value="50" class="slider" id="wp-control-speed-slider">
         </div>
     </div>
-    <div class="wp-controls-detail wp-d-none wp-d-flex" id="wp-controls-cvp">
-        <div>
-            <div>
-                <label for="wp-control-cvp-x" class="wp-label">X:</label>
+    <div class="wp-controls-detail wp-d-none wp-d-flex wp-justify-center wp-align-center" id="wp-controls-cvp">
+        <div class="m-t-10 m-r-20">
+            <div class="wp-d-flex">
+                <label for="wp-control-cvp-x" class="wp-label m-r-10">X:</label>
                 <input type="number" value=0 step=5 id="wp-control-cvp-x">
             </div>
-            <div>
-                <label for="wp-control-cvp-y" class="wp-label">Y:</label>
+            <div class="wp-d-flex m-t-10">
+                <label for="wp-control-cvp-y" class="wp-label m-r-10">Y:</label>
                 <input type="number" value=0 step=5 id="wp-control-cvp-y">
             </div>
         </div>
         <div>
-            <button type="button" class="wp-button">
-                <span class="material-icons">north</span>
-            </button>
-            <button type="button" class="wp-button">
-                <span class="material-icons">south</span>
-            </button>
-            <button type="button" class="wp-button">
-                <span class="material-icons">east</span>
-            </button>
-            <button type="button" class="wp-button">
-                <span class="material-icons">west</span>
-            </button>
+            <div>
+                <button type="button" class="wp-button">
+                    <span class="material-icons">north</span>
+                </button>
+            </div>
+            <div>
+                <button type="button" class="wp-button">
+                    <span class="material-icons">west</span>
+                </button>
+                <button type="button" class="wp-button">
+                    <span class="material-icons">east</span>
+                </button>
+            </div>
+            <div>
+                <button type="button" class="wp-button">
+                    <span class="material-icons">south</span>
+                </button>
+            </div>
         </div>
     </div>
     <div class="wp-controls-detail wp-d-none" id="wp-controls-rsfz">
-        <button type="button" class="wp-button">
-            <span class="material-icons">rotate_right</span>
-        </button>
-        <button type="button" class="wp-button">
-            <span class="material-icons">cached</span>
-        </button>
-        <button type="button" class="wp-button">
-            <span class="material-icons">flip</span>
-        </button>
-        <button type="button" class="wp-button">
-            <span class="material-icons">zoom_in</span>
-        </button>
-        <button type="button" class="wp-button">
-            <span class="material-icons">zoom_out</span>
-        </button>
+        <div class="m-t-10">
+            <button type="button" class="wp-button">
+                <span class="material-icons">rotate_right</span>
+            </button>
+            <button type="button" class="wp-button">
+                <span class="material-icons">cached</span>
+            </button>
+            <button type="button" class="wp-button">
+                <span class="material-icons">flip</span>
+            </button>
+            <button type="button" class="wp-button">
+                <span class="material-icons">zoom_in</span>
+            </button>
+            <button type="button" class="wp-button">
+                <span class="material-icons">zoom_out</span>
+            </button>
+        </div>
     </div>
 </div>

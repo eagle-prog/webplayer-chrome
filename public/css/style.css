@@ -8,6 +8,7 @@
     z-index: 10;
     width: auto;
     text-align: center;
+    font-size: 14px;
 }
 .wp-controls {
     display: flex;
@@ -23,7 +24,6 @@
 }
 .wp-label {
     display: block;
-    font-size: 14px;
 }
 .wp-button {
     background: transparent;
@@ -32,17 +32,24 @@
 .wp-button .material-icons {
     font-size: 40px;
 }
-#wp-controls-bsc > div {
-    display: flex;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
+#wp-control-speed-rate, #wp-control-cvp-x, #wp-control-cvp-y {
+    width: 60px;
+    color: #000;
+    text-align: right;
+}
+#wp-controls-cvp .wp-button .material-icons {
+    font-size: 24px;
 }
 
 /* Utilities */
 .wp-d-flex {
     display: flex;
+}
+.wp-justify-center {
+    justify-content: center;
+}
+.wp-align-center {
+    align-items: center;
 }
 .wp-d-none {
     display: none;
