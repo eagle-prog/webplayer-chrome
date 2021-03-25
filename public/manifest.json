@@ -27,6 +27,8 @@
             ],
             "js": [
                 "vendors/jquery/jquery.min.js",
+                "js/config.js",
+                "js/global.js",
                 "js/utils.js",
                 "js/content.js",
                 "js/controls.js"

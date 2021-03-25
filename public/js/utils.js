@@ -94,7 +94,34 @@ function changeCVP(x, y) {
     const containers = document.querySelectorAll('.VideoContainer');
     for (const container of containers) {
         container.style.position = 'absolute';
-        container.style.top      = x + 'px';
-        container.style.left     = y + 'px';
+        container.style.left     = x + 'px';
+        container.style.top      = y + 'px';
     }
+}
+
+/**
+ * Rotate & scale videos in a page
+ * @param {number} degree 
+ * @param {number} scale 
+ */
+function rotate(degree=0, scale=1.0) {
+    const str    = `rotate(${degree}deg) scale(${scale}); transform-origin: 50% 50%;`;
+    const css    = `.VideoContainer{transform : ${str}}`;
+    const style  = document.createElement('style');
+
+    style.appendChild(document.createTextNode(css));
+    document.head.appendChild(style);
+}
+
+/**
+ * Zoom in/ Zoom out videos in a page
+ * @param {number} level 
+ */
+function zoom(level=1.0) {
+    const str    = `scale(${level})`;
+    const css    = `.VideoContainer{transform : ${str} !important}`;
+    const style  = document.createElement('style');
+
+    style.appendChild(document.createTextNode(css));
+    document.head.appendChild(style);
 }

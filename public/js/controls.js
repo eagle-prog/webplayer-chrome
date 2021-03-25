@@ -1,7 +1,12 @@
 const Controls = {
+    degree: 0,
+    zoomLevel: 1.0,
+    spinInterval: null,
+    self: null,
     init: async function() {
         await this.initUI();
         this.initEvents();
+        self = this;
     },
     initUI: async function() {
         await loadHTML('.wp-wrapper', 'html/controls.html');
@@ -14,6 +19,12 @@ const Controls = {
         $('#wp-control-speed-slider').change(this.onChangeSpeedSlider);
         $('.wp-btn-control-cvp').click(this.onClickBtnCVP);
         $('.wp-control-cvp-position').change(this.onChangeCVPInput);
+        $('.wp-btn-rotate').click(this.onClickBtnRotate);
+        $('.wp-btn-spin').click(this.onClickBtnSpin);
+        $('.wp-btn-flip').click(this.onClickBtnFlip);
+        $('.wp-btn-zoom-in').click(this.onClickBtnZoomIn);
+        $('.wp-btn-zoom-out').click(this.onClickBtnZoomOut);
+        $('.wp-btn-reset-rsfz').click(this.onClickBtnResetRSFZ);
     },
     /**
      * Event when click reset button in brightness, saturation, contrast
@@ -85,13 +96,13 @@ const Controls = {
         const target = $(this).data('target');
 
         if (target === 'up') {
-            x = x - 10;
-        } else if (target === 'left') {
             y = y - 10;
+        } else if (target === 'left') {
+            x = x - 10;
         } else if (target === 'right') {
-            y = y + 10;
-        } else if (target === 'down') {
             x = x + 10;
+        } else if (target === 'down') {
+            y = y + 10;
         }
 
         $('#wp-control-cvp-x').val(x);
@@ -105,5 +116,62 @@ const Controls = {
         const x = Number($('#wp-control-cvp-x').val());
         const y = Number($('#wp-control-cvp-y').val());
         changeCVP(x, y);
-    }
+    },
+    /**
+     * Event when click rotate button
+     */
+    onClickBtnRotate: function() {
+        if (self.degree >= 345) {
+            self.degree = 0;
+        } else {
+            self.degree += 15;
+        }
+
+        rotate(self.degree, ScaleMap[self.degree]);
+    },
+    /**
+     * Event when click spin button
+     */
+    onClickBtnSpin: function() {
+        if (self.spinInterval) {
+            return;
+        }
+
+        self.spinInterval = setInterval(function() {
+            self.degree += 15;
+            rotate(self.degree, ScaleMap[self.degree]);
+        }, 500);
+    },
+    /**
+     * Event when click flip button
+     */
+    onClickBtnFlip: function() {
+
+    },
+    /**
+     * Event when click zoom in button
+     */
+    onClickBtnZoomIn: function() {
+        self.zoomLevel += 0.1;
+        zoom(self.zoomLevel);
+    },
+    /**
+     * Event when click zoom out button
+     */
+    onClickBtnZoomOut: function() {
+        self.zoomLevel -= 0.1;
+        zoom(self.zoomLevel);
+    },
+    /**
+     * Event when click reset button in RSFZ
+     */
+    onClickBtnResetRSFZ: function() {
+        clearInterval(self.spinInterval);
+
+        self.degree       = 0;
+        self.zoomLevel    = 1.0;
+        self.spinInterval = null;
+
+        rotate(self.degree, self.zoomLevel);
+    },
 };
