@@ -78,10 +78,23 @@ function changeBSC(data) {
  */
 function changePS(speed=1) {
     const videos = document.querySelectorAll('video');
-
     try {
         for (const video of videos) {
             video.playbackRate = speed;
         }
     } catch (err) {}
+}
+
+/**
+ * Change position of videos in a page
+ * @param {number} x 
+ * @param {number} y 
+ */
+function changeCVP(x, y) {
+    const containers = document.querySelectorAll('.VideoContainer');
+    for (const container of containers) {
+        container.style.position = 'absolute';
+        container.style.top      = x + 'px';
+        container.style.left     = y + 'px';
+    }
 }

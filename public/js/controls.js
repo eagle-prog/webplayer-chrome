@@ -12,6 +12,8 @@ const Controls = {
         $('#wp-controls-bsc .slider').change(this.onChangeBSC);
         $('#wp-control-speed-rate').change(this.onChangeSpeedInput);
         $('#wp-control-speed-slider').change(this.onChangeSpeedSlider);
+        $('.wp-btn-control-cvp').click(this.onClickBtnCVP);
+        $('.wp-control-cvp-position').change(this.onChangeCVPInput);
     },
     /**
      * Event when click reset button in brightness, saturation, contrast
@@ -73,5 +75,35 @@ const Controls = {
             target.removeClass('wp-d-none');
             $(this).css('margin-top', '-15px');
         }
+    },
+    /**
+     * Event when click buttons in Change Video Position
+     */
+    onClickBtnCVP: function() {
+        let x        = Number($('#wp-control-cvp-x').val());
+        let y        = Number($('#wp-control-cvp-y').val());
+        const target = $(this).data('target');
+
+        if (target === 'up') {
+            x = x - 10;
+        } else if (target === 'left') {
+            y = y - 10;
+        } else if (target === 'right') {
+            y = y + 10;
+        } else if (target === 'down') {
+            x = x + 10;
+        }
+
+        $('#wp-control-cvp-x').val(x);
+        $('#wp-control-cvp-y').val(y);
+        changeCVP(x, y);
+    },
+    /**
+     * Event when x or y postion has been changed
+     */
+    onChangeCVPInput: function() {
+        const x = Number($('#wp-control-cvp-x').val());
+        const y = Number($('#wp-control-cvp-y').val());
+        changeCVP(x, y);
     }
 };
