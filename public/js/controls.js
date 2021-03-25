@@ -5,9 +5,10 @@ const Controls = {
     spinInterval: null,
     self: null,
     init: async function() {
+        self = this;
+
         await this.initUI();
         this.initEvents();
-        self = this;
     },
     initUI: async function() {
         await loadHTML('.wp-wrapper', 'html/controls.html');
