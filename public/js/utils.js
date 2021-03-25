@@ -114,7 +114,7 @@ function rotate(degree=0, scale=1.0) {
 }
 
 /**
- * Zoom in/ Zoom out videos in a page
+ * Zoom in/out videos in a page
  * @param {number} level 
  */
 function zoom(level=1.0) {
@@ -124,4 +124,16 @@ function zoom(level=1.0) {
 
     style.appendChild(document.createTextNode(css));
     document.head.appendChild(style);
+}
+
+/**
+ * Flip videos in a page
+ * @param {number} degree 
+ */
+function flip(degree) {
+    const videos = document.querySelectorAll('video');
+    for (const video of videos) {
+        video.style.transform            = `rotateY(${degree}deg)`;
+        video.style['-webkit-transform'] = `rotateY(${degree}deg)`;
+    }
 }

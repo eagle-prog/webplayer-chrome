@@ -1,5 +1,6 @@
 const Controls = {
-    degree: 0,
+    degreeRotate: 0,
+    degreeFlip: 0,
     zoomLevel: 1.0,
     spinInterval: null,
     self: null,
@@ -121,13 +122,13 @@ const Controls = {
      * Event when click rotate button
      */
     onClickBtnRotate: function() {
-        if (self.degree >= 345) {
-            self.degree = 0;
+        if (self.degreeRotate >= 345) {
+            self.degreeRotate = 0;
         } else {
-            self.degree += 15;
+            self.degreeRotate += 15;
         }
 
-        rotate(self.degree, ScaleMap[self.degree]);
+        rotate(self.degreeRotate, ScaleMap[self.degreeRotate]);
     },
     /**
      * Event when click spin button
@@ -138,15 +139,16 @@ const Controls = {
         }
 
         self.spinInterval = setInterval(function() {
-            self.degree += 15;
-            rotate(self.degree, ScaleMap[self.degree]);
+            self.degreeRotate += 15;
+            rotate(self.degreeRotate, ScaleMap[self.degreeRotate]);
         }, 500);
     },
     /**
      * Event when click flip button
      */
     onClickBtnFlip: function() {
-
+        self.degreeFlip += 180;
+        flip(self.degreeFlip);
     },
     /**
      * Event when click zoom in button
@@ -168,10 +170,12 @@ const Controls = {
     onClickBtnResetRSFZ: function() {
         clearInterval(self.spinInterval);
 
-        self.degree       = 0;
+        self.degreeRotate = 0;
+        self.degreeFlip   = 0;
         self.zoomLevel    = 1.0;
         self.spinInterval = null;
 
-        rotate(self.degree, self.zoomLevel);
+        rotate(self.degreeRotate, self.zoomLevel);
+        flip(self.degreeFlip);
     },
 };
