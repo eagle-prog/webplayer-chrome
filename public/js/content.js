@@ -1,25 +1,3 @@
-async function initUI() {
-    const container       = document.createElement('div');
-    container.classList.add('wp-wrapper');
-    const style           = document.createElement('link');
-    style.href            = 'https://fonts.googleapis.com/css2?family=Material+Icons';
-    style.rel             = 'stylesheet';
-    const playerContainer = $('.nf-player-container');
-
-    if (playerContainer.length === 0) {
-        return;
-    }
-
-    document.head.appendChild(style);
-    playerContainer.append(container);
-
-    await Controls.init();
-}
-
-function initEvents() {
-    chrome.runtime.onMessage.addListener(handleMessage);
-}
-
 /**
  * Event listener to handle message
  */
@@ -39,17 +17,6 @@ function sendMessage(message, data) {
 }
 
 window.onload = async function() {
-    init();
-}
-
-function init() {
-    setInterval(async () => {
-        if ($('.nf-player-container')[0] && 
-            !$('.motion-background-component')[0] && 
-            !$('.wp-wrapper')[0]) 
-        {
-            await initUI();
-            initEvents();
-        }
-    }, 1000);
+    Controls.init();
+    chrome.runtime.onMessage.addListener(handleMessage);
 }

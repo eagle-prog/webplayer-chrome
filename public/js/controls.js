@@ -4,14 +4,36 @@ const Controls = {
     zoomLevel: 1.0,
     spinInterval: null,
     self: null,
-    init: async function() {
+    init: function() {
         self = this;
 
-        await this.initUI();
-        this.initEvents();
+        setInterval(async function() {
+            if ($('.nf-player-container')[0] && 
+                !$('.motion-background-component')[0] && 
+                !$('.wp-controls-wrapper')[0]) 
+            {
+                await self.initUI();
+                self.initEvents();
+            }
+        }, 1000);
     },
     initUI: async function() {
-        await loadHTML('.wp-wrapper', 'html/controls.html');
+        const container       = document.createElement('div');
+        container.classList.add('wp-controls-wrapper');
+
+        const style           = document.createElement('link');
+        style.href            = 'https://fonts.googleapis.com/css2?family=Material+Icons';
+        style.rel             = 'stylesheet';
+        const playerContainer = $('.nf-player-container');
+
+        if (playerContainer.length === 0) {
+            return;
+        }
+
+        document.head.appendChild(style);
+        playerContainer.append(container);
+
+        await loadHTML('.wp-controls-wrapper', 'html/controls.html');
     },
     initEvents: function() {
         $('.wp-btn-shortcut').click(this.onClickBtnShortcut);

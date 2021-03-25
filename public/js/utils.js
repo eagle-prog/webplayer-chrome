@@ -119,7 +119,7 @@ function rotate(degree=0, scale=1.0) {
  */
 function zoom(level=1.0) {
     const str    = `scale(${level})`;
-    const css    = `.VideoContainer{transform : ${str} !important}`;
+    const css    = `.VideoContainer{transform : ${str}}`;
     const style  = document.createElement('style');
 
     style.appendChild(document.createTextNode(css));
