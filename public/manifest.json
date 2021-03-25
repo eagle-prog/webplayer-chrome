@@ -31,7 +31,10 @@
                 "js/global.js",
                 "js/utils.js",
                 "js/content.js",
-                "js/controls.js"
+                "js/controls.js",
+                "js/search.js",
+                "js/ratings.js",
+                "js/trailers.js"
             ],
             "css": [
                 "css/style.css"
@@ -47,7 +50,8 @@
     "web_accessible_resources": [
 		"images/*.*",
 		"html/*.*",
-		"vendors/*.*"
+		"vendors/*.*",
+        "resources/*.*"
     ]
 }
   

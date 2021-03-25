@@ -18,5 +18,7 @@ function sendMessage(message, data) {
 
 window.onload = async function() {
     Controls.init();
+    Search.init();
+    
     chrome.runtime.onMessage.addListener(handleMessage);
 }
