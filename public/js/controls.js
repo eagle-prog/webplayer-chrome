@@ -18,19 +18,11 @@ const Controls = {
     initUI: async function() {
         const container       = document.createElement('div');
         container.classList.add('wp-controls-wrapper');
-
-        const style           = document.createElement('link');
-        style.href            = 'https://fonts.googleapis.com/css2?family=Material+Icons';
-        style.rel             = 'stylesheet';
         const playerContainer = $('.nf-player-container');
-
         if (playerContainer.length === 0) {
             return;
         }
-
-        document.head.appendChild(style);
         playerContainer.append(container);
-
         await loadHTML('.wp-controls-wrapper', 'html/controls.html');
     },
     initEvents: function() {

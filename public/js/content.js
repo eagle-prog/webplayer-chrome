@@ -16,7 +16,15 @@ function sendMessage(message, data) {
     chrome.runtime.sendMessage(message, data);
 }
 
+function injectCSS() {
+    const style = document.createElement('link');
+    style.href  = 'https://fonts.googleapis.com/css2?family=Material+Icons';
+    style.rel   = 'stylesheet';
+    document.head.appendChild(style);
+}
+
 window.onload = async function() {
+    injectCSS();
     Controls.init();
     Search.init();
     
