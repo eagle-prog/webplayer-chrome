@@ -33,6 +33,7 @@
                 "js/content.js",
                 "js/controls.js",
                 "js/search.js",
+                "js/prevent.js",
                 "js/ratings.js",
                 "js/trailers.js"
             ],

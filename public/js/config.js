@@ -1,8 +1,11 @@
 const DEFAULTS = {
-    'wp_prevent_auto_play'  : false,
-    'wp_show_ratings'       : false,
-    'wp_show_trailers'      : false,
+    wp_prevent_auto_play  : false,
+    wp_show_ratings       : false,
+    wp_show_trailers      : false,
 };
+const SWITCH_PREVENT_UPDATED  = 'switch_prevent_updated';
+const SWITCH_RATINGS_UPDATED  = 'switch_ratings_updated';
+const SWITCH_TRAILERS_UPDATED = 'switch_trailers_updated';
 const ScaleMap = {
     0: 1.0,
     15: 0.7,
@@ -29,3 +32,10 @@ const ScaleMap = {
     330: 0.57,
     345: 0.7,
 }
+const NETFLIX_TWEAKED_DATA_NAME = "NETFLIX_TWEAKED_DATA";
+const BILLBOARD_OBSERVER_NAME   = "BILLBOARD_OBSERVER";
+const TITLE_CARDS_OBSERVER_NAME = "TITLE_CARDS_OBSERVER";
+const BIG_ROW_OBSERVER_NAME     = "BIG_ROW_OBSERVER";
+const JAWBONE_OBSERVER_NAME     = "JAWBONE_OBSERVER";
+const LIST_ORDER_OBSERVER_NAME  = "LIST_ORDER_OBSERVER";
+const NETFLIX_TWEAKED_CLASS     = "netflix-tweaked";

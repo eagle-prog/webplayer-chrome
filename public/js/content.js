@@ -2,8 +2,12 @@
  * Event listener to handle message
  */
 function handleMessage(message, sender, sendResponse) {
-    if (message.action === 'TEST') {
-        sendResponse({});
+    if (message.action === SWITCH_PREVENT_UPDATED) {
+        location.reload();
+    } else if (message.action === SWITCH_RATINGS_UPDATED) {
+
+    } else if (message.action === SWITCH_TRAILERS_UPDATED) {
+
     }
 }
 
@@ -27,6 +31,7 @@ window.onload = async function() {
     injectCSS();
     Controls.init();
     Search.init();
+    Prevent.init();
     
     chrome.runtime.onMessage.addListener(handleMessage);
 }
