@@ -1,13 +1,10 @@
 const Search = {
-    self: null,
     init: function() {
-        self = this;
-
-        setInterval(function() {
+        setInterval(() => {
             if (location.href.includes('www.netflix.com/browse') &&
-                !$('#dropDown')[0]) 
+                !$('#wp-search-dropdown')[0]) 
             {
-                self.initUI();
+                this.initUI();
             }
         }, 1000);
     },
@@ -19,44 +16,46 @@ const Search = {
         dropdown.style.position  = "absolute";
         const width              = $('.tabbed-primary-navigation').outerWidth();
         const height             = $('.tabbed-primary-navigation').outerHeight();
-        dropdown.style.left      = width*1.475 + "px";
-        dropdown.style.top       = height/2.85 + "px";
+        dropdown.style.left      = width * 1.475 + "px";
+        dropdown.style.top       = height / 2.85 + "px";
         dropdown.style.minHeight = "40vw";
-        dropdown.style.minWidth  = " 25vw";
+        dropdown.style.minWidth  = "25vw";
         return dropdown;
     },
     styleInner: function(listDiv) {
-        const top = $('.tabbed-primary-navigation').height();
-        listDiv.style.marginTop = top/1.5 +"px";
-        listDiv.style.maxHeight = "30vw";
-        listDiv.style.minWidth = "21.5vw";
-        listDiv.style.backgroundColor ="rgba(4,4,4,.74)";
-        listDiv.style.overflowY = "auto";
-        listDiv.style.overflowX = "hidden";
-        listDiv.style.fontSize = "17px";
-        listDiv.style.display ="none";
-        listDiv.style.border = "none";
+        const top                     = $('.tabbed-primary-navigation').height();
+        listDiv.style.marginTop       = top / 1.5 +"px";
+        listDiv.style.maxHeight       = "30vw";
+        listDiv.style.minWidth        = "21.5vw";
+        listDiv.style.backgroundColor = "rgba(4,4,4,.74)";
+        listDiv.style.overflowY       = "auto";
+        listDiv.style.overflowX       = "hidden";
+        listDiv.style.fontSize        = "17px";
+        listDiv.style.display         = "none";
+        listDiv.style.border          = "none";
         return listDiv
     },
     createButton: function() {
-        const btn  = document.createElement("Button")
-        const text = document.createTextNode("Reveal");
-        btn.id = 'revealBtn';
-        btn.style.position ="fixed";
-        btn.style.fontSize = "17px";
-        btn.style.fontStyle = "bold";
-        btn.style.color = "#ABACAC";
-        btn.style.border = "none";
-        btn.style.background= "Transparent";
+        const btn            = document.createElement("Button")
+        const text           = document.createTextNode("Reveal");
+        btn.id               = 'revealBtn';
+        btn.style.position   ="fixed";
+        btn.style.fontSize   = "17px";
+        btn.style.fontStyle  = "bold";
+        btn.style.color      = "#ABACAC";
+        btn.style.border     = "none";
+        btn.style.background = "Transparent";
         btn.appendChild(text);
         return btn;
     },
     filterSearch: function() {
         let input, filter, a, i;
-        input = document.getElementById("categoryInput");
+
+        input  = document.getElementById("categoryInput");
         filter = input.value.toUpperCase();
-        div = document.getElementById("dropDown");
-        a = div.getElementsByTagName("a");
+        div    = document.getElementById("dropDown");
+        a      = div.getElementsByTagName("a");
+
         for (i = 0; i < a.length; i++) {//loop through each a tag
             if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {//change display of <a> tag if it matches input field search term
                 a[i].style.display = "block";
@@ -66,31 +65,34 @@ const Search = {
         }
     },
     createInput: function() {
-        const input = document.createElement("input");
-        input.id = "categoryInput"
-        input.type = "text";
-        input.style.position = "fixed";
-        input.placeholder = "Search";
-        input.style.display ="none";
-        input.style.fontSize = "17px";
+        const input              = document.createElement("input");
+        input.id                 = "categoryInput"
+        input.type               = "text";
+        input.style.position     = "fixed";
+        input.placeholder        = "Search";
+        input.style.display      = "none";
+        input.style.fontSize     = "17px";
         input.style.borderRadius = "1px";
-        input.style.background = "Transparent";
-        input.style.border = "solid rgba(250,250,250,.9) .5px";
-        input.style.margin = "0 0 0 1vw"
-        input.style.minHeight = "1.5vw";
-        input.style.width = "0px";
-        input.onkeyup = this.filterSearch;
+        input.style.background   = "Transparent";
+        input.style.border       = "solid rgba(250,250,250,.9) .5px";
+        input.style.margin       = "0 0 0 1vw"
+        input.style.minHeight    = "1.5vw";
+        input.style.width        = "0px";
+        input.onkeyup            = this.filterSearch;
         return input;
     },
     createLink: function(link, category) {
-        const a = document.createElement('a');
+        const a        = document.createElement('a');
         const linkText = document.createTextNode(category+'\n');
+
         a.appendChild(linkText);
+        
         a.style.display = "block";
-        a.style.margin = ".2vw 1vw 0 .4vw"
+        a.style.margin  = ".2vw 1vw 0 .4vw"
         a.style.padding = ".1vw 0 .2vw .5vw";
-        a.tagName = "a";
-        a.href = "http://www.netflix.com/browse/genre/"+link;
+        a.tagName       = "a";
+        a.href          = "http://www.netflix.com/browse/genre/"+link;
+
         $(a).on('mouseenter',function(){
             $(this).css('background-color','rgba(255,255,255,.2)');
         });
@@ -100,9 +102,10 @@ const Search = {
         return a;
     },
     splitCategory: function(line) {
-        const regExp =  /^(\S+)\s(.+)$/;//regex to seperate category number and corresponding name
-        let match = null;
-        const trimLine = line.replace(/ +/, "");//trim leading whitespace
+        const regExp   =  /^(\S+)\s(.+)$/; //regex to seperate category number and corresponding name
+        let match      = null;
+        const trimLine = line.replace(/ +/, ""); //trim leading whitespace
+
         if((match = regExp.exec(trimLine)) !== null){
             if(match.index === regExp.lastIndex){
                 regExp.lastIndex++;
@@ -111,21 +114,21 @@ const Search = {
         return match;
     },
     populateDropdown: function() {
-        const xhr = new XMLHttpRequest();
+        const xhr     = new XMLHttpRequest();
         const listDiv = document.createElement("div");
-        listDiv.id = "categoryDiv";
+        listDiv.id    = "categoryDiv";
+
         xhr.open('GET', chrome.extension.getURL('resources/categories.txt'), true);
-        xhr.onreadystatechange = function()
-        {
+        xhr.onreadystatechange = () => {
             if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200)
             {
                 const lines = xhr.responseText.split('\n');//create array of all categories in document
                 let categoryLink = null;
                 let categoryName = null;
                 for(let line = 0; line< lines.length;line++){
-                    categoryLink = self.splitCategory(lines[line])[1];
-                    categoryName = self.splitCategory(lines[line])[2];
-                    listDiv.appendChild(self.createLink(categoryLink, categoryName));
+                    categoryLink = this.splitCategory(lines[line])[1];
+                    categoryName = this.splitCategory(lines[line])[2];
+                    listDiv.appendChild(this.createLink(categoryLink, categoryName));
                 }
             }
         };
@@ -135,7 +138,7 @@ const Search = {
     animateDropdown: function(outerDiv, btn) {
         $(btn).on('mouseenter', function(){
             const offset = $('#revealBtn').offset().left;
-            const width = $('#revealBtn').width();
+            const width  = $('#revealBtn').width();
             $('#revealBtn').css({color : 'white'});
             $('#categoryInput').css({left: offset+width})//position input field next to button
             $('#categoryDiv').slideDown(500);
@@ -152,15 +155,14 @@ const Search = {
         });
     },
     createDropdown: function() {
-        const btn = this.createButton();
-        const input = this.createInput();
+        const btn    = this.createButton();
+        const input  = this.createInput();
         let outerDiv = document.createElement("div");
-        outerDiv.id = "dropDown";
-        outerDiv.class = "categories";
+        outerDiv.id  = "wp-search-dropdown";
         outerDiv.appendChild(btn);
         outerDiv.appendChild(input);
         outerDiv.appendChild(this.populateDropdown());
-        outerDiv = this.styleOuter(outerDiv);
+        outerDiv     = this.styleOuter(outerDiv);
         this.animateDropdown(outerDiv, btn);
         return outerDiv;
     },

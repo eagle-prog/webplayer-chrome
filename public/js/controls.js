@@ -1,19 +1,17 @@
-const Controls = {
-    degreeRotate: 0,
-    degreeFlip: 0,
-    zoomLevel: 1.0,
-    spinInterval: null,
-    self: null,
-    init: function() {
-        self = this;
+let degreeRotate = 0;
+let degreeFlip   = 0;
+let zoomLevel    = 1.0
+let spinInterval = null;
 
-        setInterval(async function() {
+const Controls = {
+    init: function() {
+        setInterval(async () => {
             if ($('.nf-player-container')[0] && 
                 !$('.motion-background-component')[0] && 
                 !$('.wp-controls-wrapper')[0]) 
             {
-                await self.initUI();
-                self.initEvents();
+                await this.initUI();
+                this.initEvents();
             }
         }, 1000);
     },
@@ -145,60 +143,60 @@ const Controls = {
      * Event when click rotate button
      */
     onClickBtnRotate: function() {
-        if (self.degreeRotate >= 345) {
-            self.degreeRotate = 0;
+        if (degreeRotate >= 345) {
+            degreeRotate = 0;
         } else {
-            self.degreeRotate += 15;
+            degreeRotate += 15;
         }
 
-        rotate(self.degreeRotate, ScaleMap[self.degreeRotate]);
+        rotate(degreeRotate, ScaleMap[degreeRotate]);
     },
     /**
      * Event when click spin button
      */
     onClickBtnSpin: function() {
-        if (self.spinInterval) {
+        if (spinInterval) {
             return;
         }
 
-        self.spinInterval = setInterval(function() {
-            self.degreeRotate += 15;
-            rotate(self.degreeRotate, ScaleMap[self.degreeRotate]);
+        spinInterval = setInterval(function() {
+            degreeRotate += 15;
+            rotate(degreeRotate, ScaleMap[degreeRotate]);
         }, 500);
     },
     /**
      * Event when click flip button
      */
     onClickBtnFlip: function() {
-        self.degreeFlip += 180;
-        flip(self.degreeFlip);
+        degreeFlip += 180;
+        flip(degreeFlip);
     },
     /**
      * Event when click zoom in button
      */
     onClickBtnZoomIn: function() {
-        self.zoomLevel += 0.1;
-        zoom(self.zoomLevel);
+        zoomLevel += 0.1;
+        zoom(zoomLevel);
     },
     /**
      * Event when click zoom out button
      */
     onClickBtnZoomOut: function() {
-        self.zoomLevel -= 0.1;
-        zoom(self.zoomLevel);
+        zoomLevel -= 0.1;
+        zoom(zoomLevel);
     },
     /**
      * Event when click reset button in RSFZ
      */
     onClickBtnResetRSFZ: function() {
-        clearInterval(self.spinInterval);
+        clearInterval(spinInterval);
 
-        self.degreeRotate = 0;
-        self.degreeFlip   = 0;
-        self.zoomLevel    = 1.0;
-        self.spinInterval = null;
+        degreeRotate = 0;
+        degreeFlip   = 0;
+        zoomLevel    = 1.0;
+        spinInterval = null;
 
-        rotate(self.degreeRotate, self.zoomLevel);
-        flip(self.degreeFlip);
+        rotate(degreeRotate, zoomLevel);
+        flip(degreeFlip);
     },
 };
