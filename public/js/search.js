@@ -122,7 +122,7 @@ const Search = {
         xhr.onreadystatechange = () => {
             if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200)
             {
-                const lines = xhr.responseText.split('\n');//create array of all categories in document
+                const lines = xhr.responseText.split('\n'); //create array of all categories in document
                 let categoryLink = null;
                 let categoryName = null;
                 for(let line = 0; line< lines.length;line++){
@@ -140,7 +140,7 @@ const Search = {
             const offset = $('#revealBtn').offset().left;
             const width  = $('#revealBtn').width();
             $('#revealBtn').css({color : 'white'});
-            $('#categoryInput').css({left: offset+width})//position input field next to button
+            $('#categoryInput').css({left: offset+width}) //position input field next to button
             $('#categoryDiv').slideDown(500);
             $('#categoryInput').css({display:'block',background:'black'});
             $('#categoryInput').animate({width:'18vw'}, 500);
@@ -149,7 +149,7 @@ const Search = {
             $('#categoryDiv').slideUp(500);
             $('#categoryInput').animate({width:'0vw'}, 500);
             $('#revealBtn').css({ color: '#ABACAC'});
-            setTimeout(function(){//hide input field after slide animation is done
+            setTimeout(function(){ //hide input field after slide animation is done
                 $('#categoryInput').css({display:'none', background:'transparent'})
             },500);
         });
