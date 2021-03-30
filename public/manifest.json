@@ -46,7 +46,11 @@
     "permissions": [
         "storage",
         "tabs",
-        "https://www.netflix.com/*"
+        "https://www.netflix.com/*",
+        "https://movie.douban.com/*",
+        "https://www.rottentomatoes.com/*",
+        "https://us-central1-popcorn-plugin.cloudfunctions.net/*",
+        "*://unogs.com/*"
     ],
     "web_accessible_resources": [
 		"images/*.*",

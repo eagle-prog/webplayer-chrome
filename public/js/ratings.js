@@ -4,21 +4,24 @@ const Ratings = {
 
 const e = {};
 let t, n, o = {
-    imdb: !0,
-    rt: !0,
-    metascore: !0,
-    douban: !0
+    imdb: true,
+    rt: true,
+    metascore: true,
+    douban: true
 };
 chrome.runtime.sendMessage({
     type: "activation"
-}), chrome.storage.local.get("settings", e => {
+}), 
+chrome.storage.local.get("settings", e => {
     e.settings && (o = e.settings)
-}), chrome.runtime.onMessage.addListener(e => {
+}), 
+chrome.runtime.onMessage.addListener(e => {
     if ("settings" === e.name) {
         let t;
         Object.keys(o).forEach(n => {
             o[n] !== e.data[n] && (o[n] = e.data[n], t = n)
-        }), t && function(e) {
+        }), 
+        t && function(e) {
             document.querySelectorAll(f).forEach(t => {
                 const n = t.querySelector("." + e);
                 if (n) n.parentElement.remove();
@@ -40,7 +43,10 @@ async function a(t, n = "netflix", o) {
     if (t.id) {
         const e = await (a = t.id, new Promise((e, t) => {
             chrome.storage.local.get(a, n => {
-                Object.keys(n).length ? e("object" == typeof a ? n : n[a]) : e(), chrome.runtime.lastError && t(chrome.runtime.lastError.message)
+                Object.keys(n).length ? 
+                    e("object" == typeof a ? n : n[a]) : 
+                    e(), 
+                    chrome.runtime.lastError && t(chrome.runtime.lastError.message)
             })
         }));
         if (e && Object.keys(e).length) return o(e)
@@ -176,123 +182,96 @@ function u(e, t, r) {
 let m = [];
 
 function p(e) {
-    m = m.filter(t => t.id !== e.id), chrome.runtime.sendMessage({
+    m = m.filter(t => t.id !== e.id), 
+    chrome.runtime.sendMessage({
         type: "notification",
         data: m
-    }), chrome.runtime.sendMessage({
+    }), 
+    chrome.runtime.sendMessage({
         type: "notification",
         method: "POST",
         data: m
     })
 }
-chrome.runtime.sendMessage({
-    type: "notification",
-    method: "GET"
-}, e => {
-    if (e.data && e.data.length) {
-        const t = document.querySelector(".pinning-header-container"),
-            n = function() {
-                const e = document.createElement("div");
-                return e.className = "popcorn-message", e.setAttribute("aria-live", "polite"), e
-            }();
-        t.prepend(n), m = e.data, m.forEach(e => {
-            ! function(e, t) {
-                const n = document.createElement("p");
-                n.setAttribute("data-id", e.id), n.textContent = e.title || e.content;
-                const o = document.createElement("span");
-                if (o.textContent = "popcorn: ", o.className = "popcorn-prefix", n.prepend(o), e.link) {
-                    const t = document.createElement("a");
-                    t.setAttribute("noopener", !0), t.target = "_blank", t.href = e.link, t.textContent = "view", t.addEventListener("click", () => {
-                        p(e), n.remove()
-                    }), n.append(t)
-                }
-                const r = document.createElement("button");
-                r.textContent = "×", r.setAttribute("aria-label", "close"), r.addEventListener("click", () => {
-                    p(e), n.remove()
-                }), n.append(r), t.append(n)
-            }(e, n)
+const w = {
+    subtree: !0,
+    childList: !0
+},
+f = 'div[class*="popcorn-container"]',
+b = new MutationObserver((e, t) => {
+    const n = document.querySelector(".mainView");
+    document.querySelector(".mainView") && (t.disconnect(), g.observe(n, w), M(n), C(n))
+}),
+g = new MutationObserver(e => {
+    e.forEach(e => {
+        const t = e.addedNodes && e.addedNodes[0];
+        t && 1 === t.nodeType && (M(t), E(t))
+    })
+}),
+y = new MutationObserver(e => {
+    let t = e.find(e => "overview" === e.target.getAttribute("data-popcorn") && !e.target.querySelector(f) && e.addedNodes.length && !e.addedNodes[0].classList.contains("js-transition-node") && e.target.querySelector('.jawBonePane[id*="overview" i]:not(.js-transition-node)'));
+    t && (t = t.target.closest(".jawBoneContent") || t.target.closest(".jawBoneContainer[id]"), B("jawbone", t))
+}),
+v = new MutationObserver(e => {
+    let t = e.find(e => e.addedNodes.length && /mainView|genre|is-fullbleed/.test(e.target.className));
+    if (t) {
+        t = t.target;
+        const e = t.querySelector(f);
+        e && e.getAttribute("data-id") === i(t) || C(t)
+    }
+}),
+h = new MutationObserver(e => {
+    let t = e.find(e => "jawbone" === e.target.getAttribute("data-popcorn") && e.addedNodes.length);
+    if (t) {
+        t = t.target.closest(".jawBoneContent") || t.target, x(t.querySelector(".jawBoneOpenContainer"), "jawbone");
+        !t.querySelector(".title .text") ? B("jawbone", t) : S.observe(t, w)
+    }
+}),
+S = new MutationObserver(e => {
+    let t = e.find(e => e.target.classList.contains("title") && e.target.querySelector("img"));
+    if (t) {
+        t = t.target;
+        const e = t.closest(".jawBoneContent") || t.closest(".jawBoneContainer[id]");
+        if (e) {
+            B(e.classList.contains("jawBoneContent") ? "jawbone" : "billboard", e)
+        }
+    }
+}),
+q = new MutationObserver(e => {
+    let t = e.find(e => e.addedNodes.length && /section-container/.test(e.addedNodes[0].className));
+    if (t) {
+        t = t.addedNodes[0];
+        const e = t.querySelector(".moreLikeThis--container");
+        e && Array.from(e.children).forEach(e => {
+            B("titlecard", e)
         })
     }
-});
-const w = {
-        subtree: !0,
-        childList: !0
-    },
-    f = 'div[class*="popcorn-container"]',
-    b = new MutationObserver((e, t) => {
-        const n = document.querySelector(".mainView");
-        document.querySelector(".mainView") && (t.disconnect(), g.observe(n, w), M(n), C(n))
-    }),
-    g = new MutationObserver(e => {
-        e.forEach(e => {
-            const t = e.addedNodes && e.addedNodes[0];
-            t && 1 === t.nodeType && (M(t), E(t))
-        })
-    }),
-    y = new MutationObserver(e => {
-        let t = e.find(e => "overview" === e.target.getAttribute("data-popcorn") && !e.target.querySelector(f) && e.addedNodes.length && !e.addedNodes[0].classList.contains("js-transition-node") && e.target.querySelector('.jawBonePane[id*="overview" i]:not(.js-transition-node)'));
-        t && (t = t.target.closest(".jawBoneContent") || t.target.closest(".jawBoneContainer[id]"), B("jawbone", t))
-    }),
-    v = new MutationObserver(e => {
-        let t = e.find(e => e.addedNodes.length && /mainView|genre|is-fullbleed/.test(e.target.className));
-        if (t) {
-            t = t.target;
-            const e = t.querySelector(f);
-            e && e.getAttribute("data-id") === i(t) || C(t)
-        }
-    }),
-    h = new MutationObserver(e => {
-        let t = e.find(e => "jawbone" === e.target.getAttribute("data-popcorn") && e.addedNodes.length);
-        if (t) {
-            t = t.target.closest(".jawBoneContent") || t.target, x(t.querySelector(".jawBoneOpenContainer"), "jawbone");
-            !t.querySelector(".title .text") ? B("jawbone", t) : S.observe(t, w)
-        }
-    }),
-    S = new MutationObserver(e => {
-        let t = e.find(e => e.target.classList.contains("title") && e.target.querySelector("img"));
-        if (t) {
-            t = t.target;
-            const e = t.closest(".jawBoneContent") || t.closest(".jawBoneContainer[id]");
-            if (e) {
-                B(e.classList.contains("jawBoneContent") ? "jawbone" : "billboard", e)
-            }
-        }
-    }),
-    q = new MutationObserver(e => {
-        let t = e.find(e => e.addedNodes.length && /section-container/.test(e.addedNodes[0].className));
-        if (t) {
-            t = t.addedNodes[0];
-            const e = t.querySelector(".moreLikeThis--container");
-            e && Array.from(e.children).forEach(e => {
-                B("titlecard", e)
+}),
+j = new MutationObserver(e => {
+    let t = e.find(e => e.addedNodes.length && e.addedNodes[0]);
+    if (t) {
+        t = t.addedNodes[0];
+        k(t.closest(".previewModal--wrapper"))
+    }
+}),
+N = new MutationObserver(e => {
+    let t = e.find(e => e.addedNodes.length && e.addedNodes[0].classList.contains("previewModal--wrapper"));
+    if (t)
+        if (t = t.addedNodes[0], /mini-modal/.test(t.className)) {
+            ! function(e) {
+                if (e.querySelector(".duration") || e.querySelector(".previewModal-progress") || e.querySelector(".previewModal-episodeDetails")) B("mini", e);
+                else {
+                    new MutationObserver((t, n) => {
+                        t.find(e => e.addedNodes.length && /duration|progress|episodeDetail/.test(e.addedNodes[0].className)) && (B("mini", e), n.disconnect())
+                    }).observe(e, w)
+                }
+            }(t);
+            const e = t.querySelector(".previewModal--info");
+            e && j.observe(e, {
+                childList: !0
             })
-        }
-    }),
-    j = new MutationObserver(e => {
-        let t = e.find(e => e.addedNodes.length && e.addedNodes[0]);
-        if (t) {
-            t = t.addedNodes[0];
-            k(t.closest(".previewModal--wrapper"))
-        }
-    }),
-    N = new MutationObserver(e => {
-        let t = e.find(e => e.addedNodes.length && e.addedNodes[0].classList.contains("previewModal--wrapper"));
-        if (t)
-            if (t = t.addedNodes[0], /mini-modal/.test(t.className)) {
-                ! function(e) {
-                    if (e.querySelector(".duration") || e.querySelector(".previewModal-progress") || e.querySelector(".previewModal-episodeDetails")) B("mini", e);
-                    else {
-                        new MutationObserver((t, n) => {
-                            t.find(e => e.addedNodes.length && /duration|progress|episodeDetail/.test(e.addedNodes[0].className)) && (B("mini", e), n.disconnect())
-                        }).observe(e, w)
-                    }
-                }(t);
-                const e = t.querySelector(".previewModal--info");
-                e && j.observe(e, {
-                    childList: !0
-                })
-            } else /detail-modal/.test(t.className) && k(t)
-    });
+        } else /detail-modal/.test(t.className) && k(t)
+});
 
 function M(e) {
     e.querySelectorAll(".jawBoneContent").forEach(e => {
