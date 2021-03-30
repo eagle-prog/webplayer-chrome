@@ -1,5 +1,15 @@
 const Ratings = {
+    init: async function() {
+        this.update();
+    },
+    update: async function() {
+        const isShowRatingsEnabled = await isShowRatings();
+        const css    = `.popcorn-source{display : ${isShowRatingsEnabled ? 'flex' : 'none'} !important}`;
+        const style  = document.createElement('style');
     
+        style.appendChild(document.createTextNode(css));
+        document.head.appendChild(style);
+    },
 }
 
 const e = {};
@@ -7,7 +17,6 @@ let t, n, o = {
     imdb: true,
     rt: true,
     metascore: true,
-    douban: true
 };
 chrome.runtime.sendMessage({
     type: "activation"
@@ -40,25 +49,29 @@ const r = chrome.runtime.connect({
     name: "rating"
 });
 async function a(t, n = "netflix", o) {
-    if (t.id) {
-        const e = await (a = t.id, new Promise((e, t) => {
-            chrome.storage.local.get(a, n => {
-                Object.keys(n).length ? 
-                    e("object" == typeof a ? n : n[a]) : 
-                    e(), 
-                    chrome.runtime.lastError && t(chrome.runtime.lastError.message)
-            })
-        }));
-        if (e && Object.keys(e).length) return o(e)
-    }
-    var a;
-    if (t.id || t.title) {
-        const a = +new Date + t.id;
-        r.postMessage({
-            msgId: a,
-            service: n,
-            data: t
-        }), e[a] = o
+    try {
+        if (t.id) {
+            const e = await (a = t.id, new Promise((e, t) => {
+                chrome.storage.local.get(a, n => {
+                    Object.keys(n).length ? 
+                        e("object" == typeof a ? n : n[a]) : 
+                        e(), 
+                        chrome.runtime.lastError && t(chrome.runtime.lastError.message)
+                })
+            }));
+            if (e && Object.keys(e).length) return o(e)
+        }
+        var a;
+        if (t.id || t.title) {
+            const a = +new Date + t.id;
+            r.postMessage({
+                msgId: a,
+                service: n,
+                data: t
+            }), e[a] = o
+        }
+    } catch (err) {
+        console.log(err);
     }
 }
 

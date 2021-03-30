@@ -5,7 +5,7 @@ function handleMessage(message, sender, sendResponse) {
     if (message.action === SWITCH_PREVENT_UPDATED) {
         location.reload();
     } else if (message.action === SWITCH_RATINGS_UPDATED) {
-
+        location.reload();
     } else if (message.action === SWITCH_TRAILERS_UPDATED) {
 
     }
@@ -32,6 +32,7 @@ window.onload = async function() {
     Controls.init();
     Search.init();
     Prevent.init();
+    Ratings.init();
     
     chrome.runtime.onMessage.addListener(handleMessage);
 }
